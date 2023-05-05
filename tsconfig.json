@@ -7,6 +7,7 @@
       "@/*": ["src/*"]
     },
     "experimentalDecorators": true,
-    "moduleResolution":"nodenext"
+    "moduleResolution":"node",
+    "types": ["vitest/globals"]
   }
 }
