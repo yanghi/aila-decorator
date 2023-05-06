@@ -2,9 +2,11 @@
   "name": "aila-decorator",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.d.ts",
   "type": "module",
+  "types": "dist",
   "scripts": {
+    "build": "rimraf dist & tsc -p tsconfig.build.json",
     "test": "vitest run",
     "testWatch": "vitest watch"
   },
@@ -13,6 +15,7 @@
   "author": "yanghi <yanghi-x@outlook.com>",
   "license": "MIT",
   "devDependencies": {
+    "rimraf": "^5.0.0",
     "typescript": "^5.0.4",
     "vitest": "^0.31.0"
   }
