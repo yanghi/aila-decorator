@@ -99,11 +99,13 @@ function setupResets(target: any): ResetClass {
 }
 
 
-export function resetProperties(target: any) {
+export const resetProperties: ResetClass['resetProperties'] = (target: any, ...args: any[]) => {
+  if (!isObject(target) || !target.constructor) return
+
   const resetInst = target.constructor[contructorSymbol] as ResetClass | undefined
 
   if (resetInst) {
-    resetInst.resetProperties(target)
+    resetInst.resetProperties(target, ...args)
   }
 }
 
