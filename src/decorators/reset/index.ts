@@ -44,7 +44,7 @@ class ResetClass {
     const specs = groupOrProps ? typeof groupOrProps == 'string' ? [groupOrProps] : groupOrProps : undefined
 
     this.resets.forEach(o => {
-      if (specs && ((isProps && specs.includes(o.prop.toString())) || specs.includes(o.group))) {
+      if (specs && ((isProps && !specs.includes(o.prop.toString())) || (!isProps && !specs.includes(o.group)))) {
         return
       }
 
@@ -78,7 +78,7 @@ class ResetClass {
     const that = this
 
     function resetProperties(this: any) {
-      that.resetProperties(this)
+      that.resetProperties(this, ...arguments)
       if (typeof original === 'function') {
         return original.apply(this, arguments)
       }
