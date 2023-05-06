@@ -6,6 +6,7 @@ const insSymbol = Symbol('ins');
 type ResetOptions = {
   prop: string | symbol
   defaultValue?: any
+  group?: string
 }
 
 type ResetInstanceInitProperties = {
@@ -22,11 +23,12 @@ class ResetClass {
     })
 
   }
-  add(prop: string | symbol, value: any) {
+  add(prop: string | symbol, group?: string, value?: any) {
 
     if (!this.resets.find(o => o.prop === prop)) {
       const opts: ResetOptions = {
-        prop
+        prop,
+        group
       }
 
       if (value !== undefined) {
@@ -36,10 +38,15 @@ class ResetClass {
       this.resets.push(opts)
     }
   }
-  resetProperties(inst: any) {
+  resetProperties(inst: any, groupOrProps?: string, isProps?: boolean) {
     if (!inst.__rinit) return
 
+    const specs = groupOrProps ? typeof groupOrProps == 'string' ? [groupOrProps] : groupOrProps : undefined
+
     this.resets.forEach(o => {
+      if (specs && ((isProps && specs.includes(o.prop.toString())) || specs.includes(o.group))) {
+        return
+      }
 
       if (o.defaultValue) {
         inst[o.prop] = o.defaultValue
@@ -99,10 +106,16 @@ export function resetProperties(target: any) {
   }
 }
 
-export function ResetProp(defaultValue?: any): PropertyDecorator {
-  return function resetProperties(target, property) {
+export function ResetProp(group?: string, defaultValue?: any): PropertyDecorator {
+  return function resetProp(target, property) {
     const resetinst = setupResets(target.constructor)
-    resetinst.add(property, defaultValue)
+    resetinst.add(property, group, defaultValue)
+  }
+}
+
+export function makeGroupResetPropDecorator(group: string) {
+  return function GroupResetProp(defaultValue?: any) {
+    return ResetProp(group, defaultValue)
   }
 }
 
@@ -113,5 +126,6 @@ export function makeResetable(instance: any) {
 }
 
 export interface ResetableClassImpl {
-  resetProperties(): void
+  resetProperties(groupOrProp?: string | string[], isProp?: boolean): void
 }
+
