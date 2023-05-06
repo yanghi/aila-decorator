@@ -1,3 +1,4 @@
+import { getResetValue } from "./reset";
 
 
 const contructorSymbol = Symbol('resetProperties');
@@ -32,7 +33,7 @@ class ResetClass {
       }
 
       if (value !== undefined) {
-        opts.defaultValue = value;
+        opts.defaultValue = getResetValue(value);
       }
 
       this.resets.push(opts)
@@ -49,10 +50,10 @@ class ResetClass {
       }
 
       if (o.defaultValue) {
-        inst[o.prop] = o.defaultValue
+        inst[o.prop] = getResetValue(o.defaultValue)
       } else {
         const v = inst[insSymbol][o.prop]
-        inst[o.prop] = v
+        inst[o.prop] = getResetValue(v)
       }
     })
 
@@ -70,7 +71,7 @@ class ResetClass {
     })
 
     this.resets.forEach(o => {
-      defaults[o.prop] = inst[o.prop]
+      defaults[o.prop] = getResetValue(inst[o.prop])
     })
 
     const original = inst['resetProperties']
