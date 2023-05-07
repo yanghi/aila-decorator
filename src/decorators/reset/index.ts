@@ -117,6 +117,13 @@ export function ResetProp(group?: string, defaultValue?: any): PropertyDecorator
   }
 }
 
+/**
+ * same as `ResetProp()`
+ */
+export const resetProp = ResetProp()
+
+ResetProp.resetProperties = resetProperties
+
 export function makeGroupResetPropDecorator(group: string) {
   return function GroupResetProp(defaultValue?: any) {
     return ResetProp(group, defaultValue)
