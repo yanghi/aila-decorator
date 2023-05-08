@@ -99,7 +99,13 @@ function setupResets(target: any): ResetClass {
   return target[contructorSymbol]
 }
 
-
+/**
+ * Resets the properties of the given instance to their initial values.
+ * 
+ * @param inst The instance to reset.
+ * @param groupOrProps The group or properties to reset.
+ * @param isProps Whether to treat the second argument as a list of properties or a group.
+ */
 export const resetProperties: ResetClass['resetProperties'] = (target: any, ...args: any[]) => {
   if (!isObject(target) || !target.constructor) return
 
@@ -110,6 +116,12 @@ export const resetProperties: ResetClass['resetProperties'] = (target: any, ...a
   }
 }
 
+/**
+ * Adds a property to the list of properties to reset.
+ * 
+ * @param group The group to which the property belongs.
+ * @param defaultValue The default value to reset the property to.
+ */
 export function ResetProp(group?: string, defaultValue?: any): PropertyDecorator {
   return function resetProp(target, property) {
     const resetinst = setupResets(target.constructor)

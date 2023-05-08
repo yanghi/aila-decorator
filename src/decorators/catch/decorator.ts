@@ -1,8 +1,13 @@
 import { defaults } from "./defaults";
 import { CatchHandler } from "./options";
 
+/**
+ * The decorator function that catches errors.
+ * 
+ * @param handler error handler function
+ */
 export function Catch(handler: CatchHandler = defaults.handler): MethodDecorator {
-  return function catchDecorator(target, propertyKey, descriptor) {
+  return function catchDecorator(_target, _propertyKey, descriptor) {
     const method = descriptor.value;
 
     if (typeof method =='function') {

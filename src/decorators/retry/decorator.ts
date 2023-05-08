@@ -1,5 +1,10 @@
 import { defaults } from "./defaults";
 
+/**
+ * Decorator to retry a function if it throws an error
+ * @param retryCount number of times to retry the function before failing
+ * @param intervalTime time in milliseconds to wait between retries
+ */
 export function Retry(retryCount: number = defaults.count, intervalTime: number = defaults.interval): MethodDecorator {
   return function retry(_target, _propertyKey, descriptor) {
 
