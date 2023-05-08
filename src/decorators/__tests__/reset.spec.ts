@@ -33,11 +33,6 @@ describe('reset decorator', () => {
           makeResetable(this)
         }
         resetProperties(groupOrProp?: string | string[], isProp?: boolean): void {
-          // if (isProp) {
-          //   console.log('reset properties', groupOrProp)
-          // } else {
-          //   console.log('reset group properties', groupOrProp)
-          // }
         }
 
         @ResetProp('basicInfo')

@@ -7,7 +7,6 @@ export function Catch(handler: CatchHandler = defaults.handler): MethodDecorator
 
     if (typeof method =='function') {
       descriptor.value = function (...args: any[]) {
-        console.log('called')
         try {
           const result = method.apply(this, args);
         return result;
