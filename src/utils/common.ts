@@ -15,3 +15,7 @@ export function deepCopy<T>(obj: T): T {
   
   return result;
 }
+
+export const hasOwnProp = (obj: any, prop: string): boolean => {
+  return Object.prototype.hasOwnProperty.call(obj, prop)
+}
