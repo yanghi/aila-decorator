@@ -9,6 +9,7 @@
       "@/*": ["src/*"]
     },
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "moduleResolution":"node",
     "types": ["vitest/globals"],
     "allowSyntheticDefaultImports":true
