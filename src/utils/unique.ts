@@ -1,4 +1,4 @@
-import { dotProp } from "./doProp"
+import { dotProp } from "./dotProp"
 
 export type UniqueElementFunction<T> = (item: T, index: number, arr: T[]) => any
 

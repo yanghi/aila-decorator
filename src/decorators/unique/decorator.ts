@@ -1,6 +1,6 @@
 import { defineMetadata, getMetadata, getOwnMetadata } from "../../utils/metadata";
 import { UniqueOptions } from "./options";
-import { dotProp } from "../../utils/doProp";
+import { dotProp } from "../../utils/dotProp";
 import { uniqueDottedElement, uniqueElement } from "../../utils/unique";
 
 const metadata = 'unique:parameters';

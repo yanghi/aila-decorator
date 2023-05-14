@@ -1,4 +1,4 @@
-import { dotProp } from "@/utils/doProp";
+import { dotProp } from "@/utils/dotProp";
 import defaults from "./defaults";
 import { SortOptions } from "./options";
 
