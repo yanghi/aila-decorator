@@ -40,19 +40,15 @@ export function Sort(a: SortOptions['compare'] | string | SortOptions, mayOption
   }
 
   return function sortDecorator(target, propertyKey) {
-    const descriptor = Object.getOwnPropertyDescriptor(target, propertyKey);
-
     // for developers
     const getSymobl = Symbol(process.env.NODE_ENV !== 'production' ? propertyKey : undefined)
 
     Object.defineProperty(target, propertyKey, {
-      get: descriptor?.get || function () {
+      get() {
         return this[getSymobl]
       },
-      ...descriptor,
       set(val: unknown) {
         const target = options.prop ? dotProp(val, options.prop) : val
-        const set = descriptor?.set || function set(val) { this[getSymobl] = val }
 
         if (Array.isArray(target) && target.length) {
           let compareFn = options.compare
@@ -71,7 +67,7 @@ export function Sort(a: SortOptions['compare'] | string | SortOptions, mayOption
             target.sort(compareFn)
           }
         }
-        set.call(this, val)
+        this[getSymobl] = val
       }
     })
   };
