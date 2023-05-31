@@ -8,7 +8,8 @@
   "scripts": {
     "build": "rimraf dist & tsc -p tsconfig.build.json",
     "test": "vitest run",
-    "testWatch": "vitest watch"
+    "testWatch": "vitest watch",
+    "publish": "pnpm build && pnpm publish"
   },
   "keywords": [],
   "repository": "https://github.com/yanghi/aila-decorator.git",
