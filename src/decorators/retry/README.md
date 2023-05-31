@@ -1,5 +1,6 @@
 ## Retry
 
+Retry method when the error occurs
 
 ### Signature
 

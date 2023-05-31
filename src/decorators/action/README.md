@@ -10,7 +10,7 @@ class MyStates implements ActionStandardState {
 }
 
 class Test {
-  // 你也可以手动初始化替代 `stateFactory`
+  // alternative, you can also manually initialize with `stateFactory`
   // myActionStates = new MyStates()
   myActionStates!: MyStates;
 
